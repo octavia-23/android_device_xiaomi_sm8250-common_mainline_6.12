@@ -122,6 +122,11 @@ on post-fs-data
 on early-boot
     start vendor.sensors
     verity_update_state
+    # Trigger Hexagon DSP Subsystems (Audio, Compute, Sensors, Modem)
+    write /dev/subsys_adsp 1
+    write /dev/subsys_cdsp 1
+    write /dev/subsys_slpi 1
+    write /dev/subsys_modem 1
 
 on property:ro.boot.dp=0x0
     write /sys/bus/platform/devices/c440000.qcom,spmi:qcom,pm8150@0:qcom,power-on@800/pshold_reboot 7
