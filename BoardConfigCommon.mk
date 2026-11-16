@@ -83,15 +83,14 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=2048 loop.max_part=7 cgroup.memory=nokmem,nosocket reboot=panic_warm
 BOARD_KERNEL_CMDLINE += androidboot.fstab_suffix=qcom
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
+# Linux 6.12 CAF Downstream Alioth Command Line Options
+BOARD_KERNEL_CMDLINE += clk_ignore_unused pd_ignore_unused sysctl.kernel.firmware_config.force_sysfs_fallback=1 firmware_class.path=/vendor/firmware_mnt/image alioth.ro_parts=modemst1,modemst2,fsg,fsc
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8250
-TARGET_KERNEL_CONFIG := \
-    vendor/kona-perf_defconfig \
-    vendor/debugfs.config \
-    vendor/xiaomi/sm8250-common.config
+TARGET_KERNEL_CONFIG := alioth_defconfig
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
