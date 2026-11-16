@@ -435,7 +435,7 @@ case "$target" in
                  KernelVersionA=${KernelVersionStr:0:1}
                  KernelVersionB=${KernelVersionS%.*}
 
-                 if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 14 ]; then
+                 if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 14 ]); then
                      setprop init.svc.vendor.qrtrns.enable 1
                  fi
                  ;;
