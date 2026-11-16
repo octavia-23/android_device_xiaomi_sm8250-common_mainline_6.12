@@ -9,3 +9,7 @@ type motor_device, dev_type;
 type sound_device, dev_type;
 
 type ultrasound_device, dev_type;
+
+type subsys_device, dev_type;
+
+type alioth_bridge_device, dev_type;
