@@ -29,7 +29,7 @@
 
 function 8953_sched_dcvs_eas()
 {
-    if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+    if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
         #governor settings
         echo 1 > /sys/devices/system/cpu/cpu0/online
         echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
@@ -95,7 +95,7 @@ function 8953_sched_dcvs_eas()
 
 function 8917_sched_dcvs_eas()
 {
-    if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+    if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
         #governor settings
         echo 1 > /sys/devices/system/cpu/cpu0/online
         echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
@@ -144,7 +144,7 @@ function 8917_sched_dcvs_eas()
         echo 960000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
     fi
 
-    if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+    if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
         # memlat specific settings are moved to seperate file under
         # device/target specific folder
         setprop vendor.dcvs.prop 1
@@ -153,7 +153,7 @@ function 8917_sched_dcvs_eas()
 
 function 8937_sched_dcvs_eas()
 {
-    if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+    if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
         # enable governor for perf cluster
         echo 1 > /sys/devices/system/cpu/cpu0/online
         echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
@@ -228,7 +228,7 @@ function 8937_sched_dcvs_eas()
         echo 768000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
     fi
 
-    if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+    if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
         # memlat specific settings are moved to seperate file under
         # device/target specific folder
         setprop vendor.dcvs.prop 1
@@ -704,7 +704,7 @@ function sdm660_sched_interactive_dcvs() {
 
 function sdm660_sched_schedutil_dcvs() {
 
-    if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+    if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
         # configure governor settings for little cluster
         echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
         echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
@@ -739,7 +739,7 @@ function sdm660_sched_schedutil_dcvs() {
     echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
 
     #if the kernel version >=4.19,set input_boost_freq accordingly
-    if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+    if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
         echo "0:1401600" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
         echo 40 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
     else
@@ -796,7 +796,7 @@ function sdm660_sched_schedutil_dcvs() {
         fi
     done
 
-    if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+    if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
         # memlat specific settings are moved to seperate file under
         # device/target specific folder
         setprop vendor.dcvs.prop 1
@@ -2396,7 +2396,7 @@ case "$target" in
                 done
 
                 #if the kernel version >=4.9,use the schedutil governor
-                if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 9 ]; then
+                if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 9 ]); then
                     8953_sched_dcvs_eas
                 else
                     8953_sched_dcvs_hmp
@@ -2441,7 +2441,7 @@ case "$target" in
                 # Set Memory parameters
                 configure_memory_parameters
 
-                if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+                if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
                     disable_ppr
                 fi
             ;;
@@ -2686,7 +2686,7 @@ case "$target" in
                 # disable thermal core_control to update interactive gov settings
                 echo 0 > /sys/module/msm_thermal/core_control/enabled
 
-                if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 9 ]; then
+                if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 9 ]); then
                     8917_sched_dcvs_eas
                 else
                     8917_sched_dcvs_hmp
@@ -2718,7 +2718,7 @@ case "$target" in
                 # Set Memory parameters
                 configure_memory_parameters
 
-                if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+                if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
                     disable_ppr
                 fi
                 ;;
@@ -2774,7 +2774,7 @@ case "$target" in
                 # disable thermal core_control to update interactive gov and core_ctl settings
                 echo 0 > /sys/module/msm_thermal/core_control/enabled
 
-                if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 9 ]; then
+                if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 9 ]); then
                     8937_sched_dcvs_eas
                 else
                     8937_sched_dcvs_hmp
@@ -2820,7 +2820,7 @@ case "$target" in
                 echo 1 > /proc/sys/kernel/power_aware_timer_migration
                 # Set Memory parameters
                 configure_memory_parameters
-                if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+                if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
                     disable_ppr
                 fi
             ;;
@@ -2840,7 +2840,7 @@ case "$target" in
                 esac
 
                 # Apply settings for sdm429/sda429/sdm439/sda439
-                if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+                if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
 
                     for device in /sys/devices/platform/soc
                     do
@@ -2876,7 +2876,7 @@ case "$target" in
                      echo 1 > /sys/devices/system/cpu/cpu0/online
                      echo 1 > /sys/devices/system/cpu/cpu4/online
 
-                     if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+                     if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
 
                          # memlat specific settings are moved to seperate file under
                          # device/target specific folder
@@ -2982,7 +2982,7 @@ case "$target" in
                      # configure schedutil governor settings
                      echo 1 > /sys/devices/system/cpu/cpu0/online
 
-                     if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+                     if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
 
                          # memlat specific settings are moved to seperate file under
                          # device/target specific folder
@@ -3030,7 +3030,7 @@ case "$target" in
                 # Set Memory parameters
                 configure_memory_parameters
 
-                if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 19 ]; then
+                if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 19 ]); then
                     disable_ppr
                 fi
 
@@ -3126,7 +3126,7 @@ case "$target" in
             echo 0-3 > /dev/cpuset/system-background/cpus
 
             #if the kernel version >=4.14,use the schedutil governor
-            if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 14 ]; then
+            if [ $KernelVersionA -gt 4 ] || ([ $KernelVersionA -eq 4 ] && [ $KernelVersionB -ge 14 ]); then
                 sdm660_sched_schedutil_dcvs
             else
                 sdm660_sched_interactive_dcvs
