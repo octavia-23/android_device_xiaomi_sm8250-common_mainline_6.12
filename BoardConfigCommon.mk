@@ -94,6 +94,7 @@ BOARD_KERNEL_CMDLINE += androidboot.fstab_suffix=qcom
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 # Linux 6.12 CAF Downstream Alioth Command Line Options
 BOARD_KERNEL_CMDLINE += clk_ignore_unused pd_ignore_unused sysctl.kernel.firmware_config.force_sysfs_fallback=1 firmware_class.path=/vendor/firmware_mnt/image alioth.ro_parts=modemst1,modemst2,fsg,fsc
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_KERNEL_SEPARATED_DTBO := true
