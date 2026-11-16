@@ -79,3 +79,7 @@
 /data/vendor/mac_addr(/.*)?                                                                         u:object_r:vendor_wifi_vendor_data_file:s0
 /mnt/vendor/persist/wlan_mac\.bin                                                                   u:object_r:vendor_persist_wcnss_service_file:s0
 /vendor/bin/nv_mac                                                                                  u:object_r:vendor_wcnss_service_exec:s0
+
+# Subsystem Boot & Platform Bridges
+/dev/subsys_.*                                                                                      u:object_r:subsys_device:s0
+/dev/alioth_.*                                                                                      u:object_r:alioth_bridge_device:s0
