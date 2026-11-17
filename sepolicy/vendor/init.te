@@ -4,6 +4,5 @@ allow init adsprpcd_file:file mounton;
 
 set_prop(init, vendor_fingerprint_prop)
 
-# Allow init to trigger DSP subsystem boot bridges and platform controls
+# Allow init to trigger DSP subsystem boot bridges
 allow init subsys_device:chr_file rw_file_perms;
-allow init alioth_bridge_device:chr_file rw_file_perms;
