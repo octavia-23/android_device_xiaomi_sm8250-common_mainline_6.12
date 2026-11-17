@@ -2,6 +2,5 @@ allow init same_process_hal_file:file execute;
 
 set_prop(init, vendor_fingerprint_prop)
 
-# Allow init to trigger DSP subsystem boot bridges and platform controls
+# Allow init to trigger DSP subsystem boot bridges
 allow init subsys_device:chr_file rw_file_perms;
-allow init alioth_bridge_device:chr_file rw_file_perms;
